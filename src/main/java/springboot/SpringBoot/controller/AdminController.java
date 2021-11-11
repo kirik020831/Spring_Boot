@@ -46,12 +46,7 @@ public class AdminController {
     @PostMapping("/new")
     public String addNewUser(@ModelAttribute User user,
                              @RequestParam("rolles") String[] role) throws NotFoundException {
-        Set<Role> roleSet = new HashSet<>();
-        for (String roles :
-                role) {
-            roleSet.add(roleService.getByName(roles));
-        }
-        user.setRoles(roleSet);
+        user.setRoles(roleService.getRoleSet(role));
         userService.saveUser(user);
         return "redirect:/admin";
     }
@@ -66,11 +61,7 @@ public class AdminController {
     @PatchMapping(value = "/edit/{id}")
     public String editUser(@ModelAttribute User user,
                            @RequestParam("rolles") String[] role) throws NotFoundException {
-        Set<Role> rolesSet = new HashSet<>();
-        for (String roles : role) {
-            rolesSet.add((roleService.getByName(roles)));
-        }
-        user.setRoles(rolesSet);
+        user.setRoles(roleService.getRoleSet(role));
         userService.update(user);
         return "redirect:/admin";
     }

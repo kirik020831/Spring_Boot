@@ -1,4 +1,4 @@
-package springboot.SpringBoot.security.handler;
+package springboot.SpringBoot.config.security.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

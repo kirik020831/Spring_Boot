@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import springboot.SpringBoot.dao.RoleRepository;
 import springboot.SpringBoot.model.Role;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -49,5 +51,14 @@ public class RoleServiceImpl implements RoleService {
             throw new NotFoundException(roleName);
         }
         return role;
+    }
+
+    @Override
+    public Set<Role> getRoleSet(String[] role) throws NotFoundException {
+        Set<Role> roleSet = new HashSet<>();
+        for (String roles : role) {
+            roleSet.add(getByName(roles));
+        }
+        return roleSet;
     }
 }

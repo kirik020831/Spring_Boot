@@ -4,6 +4,7 @@ import javassist.NotFoundException;
 import springboot.SpringBoot.model.Role;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RoleService {
 
@@ -17,4 +18,5 @@ public interface RoleService {
 
     Role getByName(String roleName) throws NotFoundException;
 
+    Set<Role> getRoleSet(String[] role) throws NotFoundException;
 }
